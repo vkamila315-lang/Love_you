@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#241333">
+<title>Uma cartinha para você 💜</title>
+<style>
+  :root {
+    --night: #1b1028;
+    --deep: #28163c;
+    --purple: #563578;
+    --violet: #8e6ac2;
+    --lilac: #cbb5f4;
+    --pale: #f2eaff;
+    --white: #fffaff;
+    --muted: #d9cbe8;
+    --gold: #f3dca4;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    color: var(--white);
+    font-family: Georgia, "Times New Roman", serif;
+    background:
+      radial-gradient(ellipse at 20% 10%, rgba(142,106,194,.23), transparent 35%),
+      radial-gradient(ellipse at 85% 45%, rgba(203,181,244,.12), transparent 34%),
+      linear-gradient(160deg, var(--night), var(--deep) 55%, #21142f);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  button { font: inherit; }
+  .stars, .stars::before, .stars::after {
+    position: fixed; inset: 0; pointer-events: none; content: "";
+    background-image:
+      radial-gradient(2px 2px at 12% 20%, #fff 60%, transparent),
+      radial-gradient(1.5px 1.5px at 70% 14%, #e9dcff 60%, transparent),
+      radial-gradient(2px 2px at 88% 40%, #fff 60%, transparent),
+      radial-gradient(1px 1px at 34% 65%, #fff 60%, transparent),
+      radial-gradient(2px 2px at 57% 83%, #d7c0ff 60%, transparent),
+      radial-gradient(1px 1px at 18% 91%, #fff 60%, transparent);
+    opacity: .5; animation: twinkle 5s ease-in-out infinite alternate;
+  }
+  .stars::before { opacity: .35; transform: translateY(20px); animation-delay: -2s; }
+  .stars::after { opacity: .25; transform: translateY(-20px); animation-delay: -4s; }
+  @keyframes twinkle { from { opacity: .22; } to { opacity: .62; } }
+  .wrap { width: min(760px, 100%); margin: 0 auto; padding: 24px 18px 50px; position: relative; z-index: 1; }
+  .topline { display:flex; justify-content:space-between; align-items:center; gap:12px; margin-bottom:28px; }
+  .tiny-brand { color: var(--muted); letter-spacing: .12em; text-transform: uppercase; font: 11px/1.4 Arial,sans-serif; }
+  .music-button, .nav-button, .surprise-button {
+    border: 1px solid rgba(226,208,255,.35); color: var(--white);
+    background: rgba(255,255,255,.07); border-radius: 999px; padding: 11px 16px;
+    cursor: pointer; transition: .2s ease; backdrop-filter: blur(8px);
+  }
+  .music-button:hover, .nav-button:hover, .surprise-button:hover { background: rgba(203,181,244,.18); transform: translateY(-1px); }
+  .music-button { font: 12px Arial,sans-serif; white-space: nowrap; }
+  .hero { text-align:center; padding: 34px 10px 44px; }
+  .eyebrow { color: var(--lilac); letter-spacing: .18em; text-transform: uppercase; font: 11px Arial,sans-serif; }
+  h1 { font-size: clamp(36px, 8vw, 58px); font-weight: normal; line-height: 1.08; margin: 18px 0 16px; }
+  .hero p { color: var(--muted); line-height:1.8; font-size:16px; max-width: 470px; margin: 0 auto 26px; }
+  .heart { color: #d9bfff; display:inline-block; animation: heartbeat 1.7s infinite; }
+  @keyframes heartbeat { 0%,100% { transform:scale(1); } 15% {transform:scale(1.13)} 30% {transform:scale(1)} 45% {transform:scale(1.08)} }
+  .open-button { border:0; background: linear-gradient(135deg, #d5c0ff, #a887e2); color:#241333; padding:14px 24px; border-radius:999px; cursor:pointer; box-shadow:0 8px 28px #0c071c66; font: bold 14px Arial,sans-serif; }
+  .open-button:hover { filter:brightness(1.06); transform:translateY(-1px); }
+  .envelope { width: min(290px, 82vw); height: 180px; margin: 30px auto 0; position:relative; border-radius:12px; background:linear-gradient(145deg,#76539b,#4a2b68); box-shadow:0 18px 45px #09051266; display:grid; place-items:center; overflow:hidden; }
+  .envelope::before { content:""; position:absolute; inset:0; background:linear-gradient(140deg,transparent 49.5%,#bca0e5 50%,transparent 50.8%),linear-gradient(220deg,transparent 49.5%,#d0b8f0 50%,transparent 50.8%); opacity:.55; }
+  .envelope-label { position:relative; text-align:center; color:#fff8ff; font-size:18px; line-height:1.6; text-shadow:0 2px 8px #2c1747; }
+  .envelope-label small { display:block; font:11px Arial,sans-serif; letter-spacing:.12em; text-transform:uppercase; color:#eadfff; }
+  .section { scroll-margin-top: 20px; padding: 34px 0; }
+  .section-head { text-align:center; margin-bottom:22px; }
+  .section-head .number { color:var(--lilac); font:11px Arial,sans-serif; letter-spacing:.2em; text-transform:uppercase; }
+  h2 { font-weight:normal; font-size:clamp(28px,6vw,39px); margin:10px 0; line-height:1.2; }
+  .sub { color:var(--muted); font-size:15px; line-height:1.7; }
+  .letter-card { background:linear-gradient(150deg,rgba(255,250,255,.97),rgba(239,226,255,.96)); color:#382448; border-radius:18px; padding:clamp(22px,6vw,42px); box-shadow:0 18px 60px #09051255; position:relative; }
+  .letter-card::before { content:""; position:absolute; inset:9px; border:1px solid #c8b2e3; border-radius:12px; pointer-events:none; }
+  .letter-card p { position:relative; font-size:17px; line-height:1.9; margin:0 0 18px; }
+  .letter-card .signoff { color:#6b478d; font-style:italic; margin-bottom:0; }
+  .quote-card { border:1px solid rgba(226,208,255,.25); border-radius:18px; padding:24px; text-align:center; background:rgba(255,255,255,.045); }
+  .quote-card p { font-size:20px; line-height:1.7; margin:8px 0; }
+  .cake-frame { margin:24px auto 0; width:min(360px,100%); border:1px solid rgba(226,208,255,.32); border-radius:18px; padding:10px; background:rgba(255,255,255,.06); }
+  .cake-frame img { display:block; width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:12px; background:#39234f; color:#f2eaff; text-align:center; }
+  .image-note { color:#d9cbe8; font:12px/1.6 Arial,sans-serif; text-align:center; margin:10px 3px 2px; }
+  .candle-note { text-align:center; color:var(--muted); font-size:14px; line-height:1.7; }
+  .wish { display:none; margin:18px auto 0; max-width:450px; color:#f3dca4; text-align:center; line-height:1.8; animation:fadeIn .7s ease both; }
+  .wish.show { display:block; }
+  @keyframes fadeIn { from {opacity:0; transform:translateY(8px)} to {opacity:1;transform:translateY(0)} }
+  .nav-row { display:flex; justify-content:space-between; align-items:center; gap:12px; margin:20px 0 8px; }
+  .nav-button:disabled { opacity:.3; cursor:not-allowed; transform:none; }
+  .dots { display:flex; justify-content:center; gap:7px; margin:18px 0; }
+  .dot { width:7px; height:7px; border-radius:50%; background:#6c5384; transition:.2s; }
+  .dot.active { background:#e1ceff; box-shadow:0 0 10px #cbb5f4; transform:scale(1.3); }
+  .surprise { display:none; text-align:center; margin:20px auto 0; max-width:500px; padding:24px; border-radius:18px; background:rgba(203,181,244,.1); border:1px solid rgba(226,208,255,.25); }
+  .surprise.show { display:block; animation:fadeIn .8s ease both; }
+  .surprise p { color:#f3eaff; font-size:19px; line-height:1.8; }
+  footer { text-align:center; padding:38px 0 10px; color:#bfaed2; font:12px/1.8 Arial,sans-serif; }
+  .hidden { display:none !important; }
+  @media (prefers-reduced-motion: reduce) { *,*::before,*::after { animation:none !important; scroll-behavior:auto !important; transition:none !important; } }
+</style>
+</head>
+<body>
+<div class="stars" aria-hidden="true"></div>
+<main class="wrap">
+  <div class="topline">
+    <div class="tiny-brand">um pedacinho do meu coração ♡</div>
+  </div>
+
+  <!-- COLOQUE o arquivo da música na mesma pasta e troque "musica.mp3" pelo nome dele. -->
+  <audio id="ourSong" loop preload="none">
+    <source src="musica.mp3" type="audio/mpeg">
+  </audio>
+
+  <section class="hero" id="inicio">
+    <div class="eyebrow">uma surpresa feita só para você</div>
+    <h1>Feliz aniversário,<br><span style="color:var(--lilac)">minha princesinha</span> <span class="heart">♡</span></h1>
+    <p>Guardei algumas palavras, um pouquinho de carinho e todo o amor que cabe neste pequeno cantinho roxo. Tudo aqui é para você.</p>
+    <button class="open-button" id="openLetter" type="button">Abrir minha cartinha ✨</button>
+    <div class="envelope" aria-label="Ilustração de um envelope roxo">
+      <div class="envelope-label"><small>com amor, para você</small>Uma cartinha especial 💌</div>
+    </div>
+  </section>
+
+  <div id="experience" class="hidden">
+    <section class="section" id="section0">
+      <div class="section-head">
+        <div class="number">01 · antes de tudo</div>
+        <h2>Hoje é todinho seu 💜</h2>
+        <p class="sub">E eu queria que você se sentisse tão amada quanto merece.</p>
+      </div>
+      <div class="quote-card">
+        <span class="heart" style="font-size:28px">♡</span>
+        <p>Tem pessoas que deixam a vida mais bonita só por existirem. Você é uma delas para mim.</p>
+        <p class="sub">Agora respira fundo, dá play na nossa música e vem ler uma coisinha que escrevi para você.</p>
+        <div class="quote-card" style="margin-top:18px; text-align:center;">
+  <div style="font-size:25px; margin-bottom:8px;">♫</div>
+  </h3>
+  <button class="music-button" id="musicButton" type="button">
+    ♫ Tocar nossa música
+  </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="section1">
+      <div class="section-head">
+        <div class="number">02 · de coração aberto</div>
+        <h2>Uma carta para você</h2>
+        <p class="sub">Leia sem pressa. Cada palavra foi escolhida com carinho.</p>
+      </div>
+      <article class="letter-card">
+        <p>feliz aniversário mnh garotinha💜</p>
+        <p>hoje é o dia da pessoa que faz meu coração ficar quentinho só por existir. quero te desejar toda a felicidade desse mundo, que Deus abençoe sua vida, ilumine seus caminhos e realize cada sonho que existe dentro desse seu coração tão lindo. você merece tudo de mais bonito que a vida pode oferecer.</p>
+        <p>sou muito feliz por ter você comigo, por poder te amar e compartilhar tantos sentimentos com você. você se tornou alguém muito especial na minha vida, alguém que eu quero ver sorrindo, conquistando seus objetivos e realizando todos os seus sonhos. se eu pudesse, tiraria todas as tristezas do seu caminho só para te ver feliz.</p>
+        <p>quero que você nunca se esqueça do quanto é incrível, do quanto é importante e do quanto merece ser amada. espero poder estar ao seu lado em muitos outros aniversários, comemorando suas conquistas, te apoiando nos dias difíceis e te lembrando todos os dias do quanto você é especial para mim.</p>
+        <p>obrigada por existir, por fazer parte da minha vida e por me proporcionar sentimentos tão lindos. meu maior desejo é que esse novo ciclo seja cheio de paz, saúde, amor, felicidade e motivos para sorrir.</p>
+        <p>eu te amo muito, meu amor, mais do que consigo explicar em palavras. feliz vida, minha princesinha! que nunca faltem motivos para você sorrir e que a vida seja tão linda com você quanto você é para mim.</p>
+        <p>feliz aniversário, minha princesinha! você é e sempre será alguém muito especial para mim!</p>
+        <p class="signoff">com todo o meu carinho, hoje e sempre. ♡</p>
+      </article>
+    </section>
+
+    <section class="section" id="section2">
+      <div class="section-head">
+        <div class="number">03 · um desejo para seu novo ciclo</div>
+        <h2>Que a vida te abrace bonito</h2>
+      </div>
+      <div class="quote-card">
+        <p>Que seu novo ciclo seja cheio de momentos inesquecíveis, novas descobertas e motivos para sorrir.</p>
+        <p>Espero estar ao seu lado para criar memórias lindas e viver muitas histórias com você. 💜✨</p>
+      </div>
+    </section>
+
+    <section class="section" id="section3">
+      
+      <div class="section-head">
+        <div class="number">04 · chegou a hora de comemorar</div>
+        <h2>Feliz vida, meu amor! 🎂</h2>
+        <p class="sub">Uma pequena pausa para fazer um pedido especial.</p>
+      </div>
+      <div class="cake-frame">
+        <!-- TROQUE "bolo.jpg" pela foto de bolo que você escolher.
+             Deixe a imagem na mesma pasta deste arquivo HTML. -->
+        <img src="bolo.jpg" alt="Um bolo de aniversário escolhido especialmente para você"
+             onerror="this.style.display='none'; document.getElementById('cakeFallback').style.display='block';">
+        <div id="cakeFallback" style="display:none; text-align:center; padding:35px 14px; color:#eadfff; line-height:1.8;">
+          <div style="font-size:42px">🎂</div>
+          <strong>Sua foto de bolo aparecerá aqui</strong>
+          <div style="font:12px Arial,sans-serif; margin-top:8px">Coloque uma imagem chamada <code>bolo.jpg</code> na mesma pasta do index.html.</div>
+        </div>
+        <p class="image-note">Um bolinho para deixar este dia ainda mais especial.</p>
+      </div>
+      <p class="candle-note">Agora feche os olhinhos por um instante, faça um pedido bem bonito e aperte o botão. 💜</p>
+      <div style="text-align:center; margin-top:18px">
+        <button class="open-button" id="wishButton" type="button">Fiz meu pedido ✨</button>
+      </div>
+      <p class="wish" id="wishMessage">Que esse desejo encontre seu caminho até você. E que, em todos os seus aniversários, você se lembre de que merece um mundo inteiro de coisas lindas. ♡</p>
+    </section>
+
+    <section class="section" id="section4">
+      <div class="section-head">
+        <div class="number">05 · só mais uma coisinha</div>
+        <h2>Tem mais um segredo…</h2>
+        <p class="sub">Porque uma cartinha nunca parece suficiente para dizer tudo.</p>
+      </div>
+      <div class="quote-card">
+        <p>Se eu pudesse te dar uma coisa além de presentes, seria a chance de se enxergar pelos meus olhos por um instante.</p>
+        <p>Talvez assim você entendesse o quanto é especial, o quanto seu sorriso importa e o quanto eu sou feliz por ter você na minha vida.</p>
+        <button class="surprise-button" id="surpriseButton" type="button">Abrir última surpresa 💌</button>
+        <div class="surprise" id="surpriseMessage">
+          <span style="font-size:30px">💜</span>
+          <p>Você é meu pedacinho favorito de sorte. Obrigada por existir, minha garotinha. Que eu possa continuar te lembrando disso por muito, muito tempo.</p>
+          <p style="color:var(--lilac); font-style:italic">Eu te amo. Feliz aniversário, minha princesinha! ♡</p>
+        </div>
+      </div>
+    </section>
+    <div class="nav-row">
+      <button class="nav-button" id="prevButton" type="button">← Voltar</button>
+      <span id="stepLabel" class="tiny-brand">Parte 1 de 5</span>
+      <button class="nav-button" id="nextButton" type="button">Continuar →</button>
+    </div>
+    <div class="dots" id="dots" aria-label="Progresso da carta"></div>
+  </div>
+
+  <footer>
+    feito com carinho, em cada detalhe ♡<br>
+    <span style="color:#a991c6">um presente pequeno, para um sentimento enorme.</span>
+  </footer>
+</main>
+<script>
+  const openLetter = document.getElementById('openLetter');
+  const experience = document.getElementById('experience');
+  const sections = Array.from(document.querySelectorAll('#experience > .section'));
+  const prevButton = document.getElementById('prevButton');
+  const nextButton = document.getElementById('nextButton');
+  const stepLabel = document.getElementById('stepLabel');
+  const dots = document.getElementById('dots');
+  const musicButton = document.getElementById('musicButton');
+  const song = document.getElementById('ourSong');
+  let current = 0;
+
+  sections.forEach((section, index) => {
+    const dot = document.createElement('span');
+    dot.className = 'dot' + (index === 0 ? ' active' : '');
+    dots.appendChild(dot);
+  });
+
+  function updateNavigation() {
+    prevButton.disabled = current === 0;
+    nextButton.disabled = current === sections.length - 1;
+    nextButton.textContent = current === sections.length - 1 ? 'Fim da cartinha ♡' : 'Continuar →';
+    stepLabel.textContent = `Parte ${current + 1} de ${sections.length}`;
+    [...dots.children].forEach((dot, i) => dot.classList.toggle('active', i === current));
+  }
+
+  function goToSection(index) {
+    current = Math.max(0, Math.min(index, sections.length - 1));
+    updateNavigation();
+    sections[current].scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  openLetter.addEventListener('click', () => {
+    experience.classList.remove('hidden');
+    openLetter.textContent = 'Cartinha aberta ♡';
+    openLetter.disabled = true;
+    goToSection(0);
+  });
+
+  prevButton.addEventListener('click', () => goToSection(current - 1));
+  nextButton.addEventListener('click', () => {
+    if (current < sections.length - 1) goToSection(current + 1);
+    else document.getElementById('surpriseButton').focus();
+  });
+
+  musicButton.addEventListener('click', async () => {
+    if (song.paused) {
+      try {
+        await song.play();
+        musicButton.textContent = 'Ⅱ Pausar música';
+      } catch (error) {
+        musicButton.textContent = 'Adicione musica.mp3';
+        alert('Para tocar a música, coloque um arquivo chamado musica.mp3 na mesma pasta do site ou ajuste o endereço do áudio no código.');
+      }
+    } else {
+      song.pause();
+      musicButton.textContent = '♫ Tocar nossa música';
+    }
+  });
+
+  document.getElementById('wishButton').addEventListener('click', () => {
+    document.getElementById('wishMessage').classList.add('show');
+    document.getElementById('wishButton').textContent = 'Pedido enviado ao universo ✨';
+  });
+
+  document.getElementById('surpriseButton').addEventListener('click', () => {
+    document.getElementById('surpriseMessage').classList.add('show');
+    document.getElementById('surpriseButton').textContent = 'Surpresa aberta ♡';
+    document.getElementById('surpriseMessage').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
+
+  updateNavigation();
+</script>
+</body>
+</html>
